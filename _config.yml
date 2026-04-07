@@ -1,5 +1,5 @@
-theme: minima
 title: Nithin Prasad
-show_excerpts: true
+remote_theme: pmarsceill/just-the-docs 
 baseurl: ""
 url: "https://nithinprasad0.github.io"
+theme: jekyll-theme-cayman
