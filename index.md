@@ -1,171 +1,184 @@
 ---
 layout: null
 ---
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nithin Prasad | Software Developer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <title>Nithin Prasad | Developer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --bg: #050505; 
-            --card: #111111; 
-            --text: #e2e8f0; 
-            --accent: #00f2ff; 
-            --border: #222222;
-            --secondary: #94a3b8;
+            --bg: #0a0a0c; 
+            --card-bg: #111114; 
+            --text-primary: #f1f1f1; 
+            --text-secondary: #94a3b8; 
+            --accent: #60a5fa; 
+            --border: #27272a;
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         body { 
             background: var(--bg); 
-            color: var(--text); 
+            color: var(--text-primary); 
             font-family: 'Inter', sans-serif; 
             margin: 0; 
             padding: 0;
-            overflow-x: hidden;
+            line-height: 1.6;
+            animation: fadeIn 1s ease-out;
         }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 80px 20px; animation: slideUp 1s ease-out; }
+        .container { max-width: 950px; margin: 0 auto; padding: 80px 24px; }
         
-        /* Header Section */
-        header { margin-bottom: 80px; }
-        h1 { font-size: 3.5rem; margin: 0; font-weight: 700; letter-spacing: -2px; }
-        .glitch-text { color: var(--accent); font-family: 'Fira Code', monospace; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 4px; display: block; margin-bottom: 10px; }
-        .bio { max-width: 600px; color: var(--secondary); font-size: 1.1rem; margin-top: 20px; }
+        header { margin-bottom: 70px; }
+        .tagline { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 12px; display: block; }
+        h1 { font-size: 3.2rem; margin: 0; font-weight: 700; letter-spacing: -2px; color: #fff; }
+        .objective { max-width: 650px; color: var(--text-secondary); font-size: 1.1rem; margin-top: 24px; }
 
-        .section-label { font-family: 'Fira Code', monospace; font-size: 0.8rem; color: #444; text-transform: uppercase; letter-spacing: 5px; margin-bottom: 40px; display: block; }
+        .section-header { 
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: 0.75rem; 
+            color: #4b5563; 
+            text-transform: uppercase; 
+            letter-spacing: 6px; 
+            margin: 60px 0 30px 0;
+            display: flex;
+            align-items: center;
+        }
 
-        /* Projects Grid */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .section-header::after { content: ""; flex: 1; height: 1px; background: var(--border); margin-left: 20px; }
+
+        /* Project Grid */
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
         
-        .card { 
-            background: var(--card); 
-            padding: 40px; 
-            border-radius: 2px; 
+        .project-card { 
+            background: var(--card-bg); 
+            padding: 35px; 
             border: 1px solid var(--border); 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
-        .card:hover { 
+        .project-card:hover { 
             border-color: var(--accent); 
-            background: #161616;
-            box-shadow: 0 0 40px rgba(0, 242, 255, 0.05);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+            transform: translateY(-4px);
         }
 
-        .card h3 { margin: 0 0 15px 0; font-size: 1.5rem; letter-spacing: -0.5px; }
-        .card p { color: var(--secondary); font-size: 0.95rem; margin-bottom: 25px; line-height: 1.7; }
+        .project-card h3 { margin: 0 0 12px 0; font-size: 1.4rem; font-weight: 600; color: #fff; }
+        .project-card p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 24px; flex-grow: 1; }
         
-        .tech-stack { display: flex; flex-wrap: wrap; gap: 10px; }
-        .tech-pill { font-family: 'Fira Code', monospace; font-size: 0.7rem; color: var(--accent); border-bottom: 1px solid var(--accent); padding-bottom: 2px; }
+        .stack { display: flex; flex-wrap: wrap; gap: 8px; }
+        .stack-item { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent); background: rgba(96, 165, 250, 0.05); padding: 4px 10px; border: 1px solid rgba(96, 165, 250, 0.2); }
 
-        /* Education & Experience Items */
-        .list-item { margin-bottom: 40px; position: relative; padding-left: 30px; }
-        .list-item::before { content: ""; position: absolute; left: 0; top: 10px; width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
-        .list-item h4 { margin: 0; font-size: 1.2rem; }
-        .list-meta { font-size: 0.85rem; color: var(--accent); margin-bottom: 10px; font-family: 'Fira Code', monospace; }
-        .list-desc { color: var(--secondary); font-size: 0.9rem; }
+        /* Experience and Education */
+        .entry { margin-bottom: 35px; border-left: 1px solid var(--border); padding-left: 25px; position: relative; }
+        .entry::before { content: ""; position: absolute; left: -4px; top: 0; width: 7px; height: 7px; background: var(--accent); }
+        .entry h4 { margin: 0; font-size: 1.15rem; color: #fff; }
+        .entry-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--accent); margin-bottom: 8px; }
+        .entry-sub { color: var(--text-secondary); font-size: 0.9rem; }
 
-        .btn { 
+        .btn-container { margin-top: 60px; }
+        .cta-btn { 
             display: inline-block; 
-            margin-top: 60px; 
-            padding: 18px 40px; 
-            border: 1px solid var(--accent);
+            padding: 16px 35px; 
+            background: transparent;
             color: var(--accent); 
+            border: 1px solid var(--accent);
             text-decoration: none; 
-            font-family: 'Fira Code', monospace;
-            font-size: 0.9rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 500;
             transition: all 0.3s ease;
         }
 
-        .btn:hover { 
+        .cta-btn:hover { 
             background: var(--accent);
             color: var(--bg);
-            box-shadow: 0 0 20px var(--accent);
+            box-shadow: 0 0 25px rgba(96, 165, 250, 0.3);
         }
 
-        footer { margin-top: 120px; padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: #333; font-size: 0.8rem; font-family: 'Fira Code', monospace; }
+        footer { margin-top: 100px; padding: 40px 0; border-top: 1px solid var(--border); text-align: center; color: #3f3f46; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <span class="glitch-text">Systems Engineering</span>
+            <span class="tagline">Developer_Portfolio_v2.0</span>
             <h1>Nithin Prasad</h1>
-            <p class="bio">Ambitious Software Developer proficient in Python and AI-driven automation[cite: 5]. Focused on building data-centric projects and coordinating high-impact technical events[cite: 6].</p>
+            <p class="objective">Ambitious Software Developer with a strong proficiency in Python and AI-driven automation. Committed to delivering scalable, high-quality code and evolving with emerging technologies.</p>
         </header>
 
-        <span class="section-label">Verified_Projects</span>
-        <div class="grid">
-            <div class="card">
+        <div class="section-header">Featured_Projects</div>
+        <div class="project-grid">
+            <div class="project-card">
                 <h3>Insight Gen</h3>
-                <p>Developed an Agentic AI Analytics platform using multi-agent orchestration for autonomous data analysis and professional reporting[cite: 33, 34].</p>
-                <div class="tech-stack">
-                    <span class="tech-pill">CrewAI</span>
-                    <span class="tech-pill">Streamlit</span>
-                    <span class="tech-pill">Pandas</span>
-                    <span class="tech-pill">Plotly</span>
+                <p>An Agentic AI Analytics platform functioning as an autonomous system for data analysis and professional report generation.</p>
+                <div class="stack">
+                    <span class="stack-item">CrewAI</span>
+                    <span class="stack-item">Streamlit</span>
+                    <span class="stack-item">Pandas</span>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="project-card">
                 <h3>Revo</h3>
-                <p>Android application featuring content rating and insightful discussions tailored for social news delivery[cite: 40].</p>
-                <div class="tech-stack">
-                    <span class="tech-pill">Android</span>
-                    <span class="tech-pill">Java</span>
-                    <span class="tech-pill">XML</span>
+                <p>Social news Android application featuring content rating and insightful discussions for real-time information delivery.</p>
+                <div class="stack">
+                    <span class="stack-item">Android</span>
+                    <span class="stack-item">Java</span>
+                    <span class="stack-item">XML</span>
                 </div>
             </div>
 
-            <div class="card">
+            <div class="project-card">
                 <h3>PROFEXIA</h3>
-                <p>A web-based skill-barter application designed for community-driven skill exchange without financial dependency[cite: 35, 38].</p>
-                <div class="tech-stack">
-                    <span class="tech-pill">Django</span>
-                    <span class="tech-pill">Python</span>
-                    <span class="tech-pill">SQL</span>
+                <p>Community-driven skill barter platform designed for web-based exchange without financial dependency.</p>
+                <div class="stack">
+                    <span class="stack-item">Django</span>
+                    <span class="stack-item">Python</span>
+                    <span class="stack-item">SQL</span>
                 </div>
             </div>
         </div>
 
-        <span class="section-label">Education_Path</span>
-        <div class="list-item">
-            <div class="list-meta">2024 - Present | GPA: 7.9</div>
+        <div class="section-header">Education</div>
+        <div class="entry">
+            <div class="entry-meta">2024 - Present // GPA: 7.9</div>
             <h4>Master of Computer Applications (MCA)</h4>
-            <p class="list-desc">Adi Shankara Institute of Engineering and Technology, Kalady[cite: 9, 10, 15].</p>
+            <div class="entry-sub">Adi Shankara Institute of Engineering and Technology, Kalady</div>
         </div>
 
-        <div class="list-item">
-            <div class="list-meta">2021 - 2024 | GPA: 6.7</div>
+        <div class="entry">
+            <div class="entry-meta">2021 - 2024 // GPA: 6.7</div>
             <h4>Bachelor of Computer Applications (BCA)</h4>
-            <p class="list-desc">DePaul Institute of Science and Technology, Angamaly[cite: 11, 17].</p>
+            <div class="entry-sub">DePaul Institute of Science and Technology, Angamaly</div>
         </div>
 
-        <span class="section-label">Leadership_Roles</span>
-        <div class="list-item">
-            <div class="list-meta">March 2026</div>
-            <h4>Main Coordinator | Hackastra 2026</h4>
-            <p class="list-desc">Managed end-to-end execution of a 19-hour national-level hackathon themed "Design for Human Weakness"[cite: 47].</p>
+        <div class="section-header">Leadership_and_Events</div>
+        <div class="entry">
+            <div class="entry-meta">March 2026</div>
+            <h4>Main Coordinator // Hackastra 2026</h4>
+            <div class="entry-sub">Managed execution of a national-level hackathon themed "Design for Human Weakness".</div>
         </div>
 
-        <div class="list-item">
-            <div class="list-meta">October 2025</div>
-            <h4>Main Coordinator | Pragyan Tech Fest</h4>
-            <p class="list-desc">Led strategic planning, sponsorship acquisition, and technical execution[cite: 49].</p>
+        <div class="entry">
+            <div class="entry-meta">October 2025</div>
+            <h4>Main Coordinator // Pragyan Tech Fest</h4>
+            <div class="entry-sub">Strategic planning and sponsorship acquisition for departmental festival.</div>
         </div>
 
-        <a href="./assets/docs/resume_tcs.pdf" class="btn">_GET_FULL_RESUME</a>
+        <div class="btn-container">
+            <a href="./assets/docs/resume_tcs.pdf" class="cta-btn">EXECUTE_RESUME_DOWNLOAD</a>
+        </div>
 
         <footer>
-            Nithin Prasad // Built on GitHub Pages // Status: Available for Global Placement [cite: 7]
+            NITHIN_PRASAD // BUILT_WITH_GITHUB_PAGES // 2026
         </footer>
     </div>
 </body>
