@@ -5,192 +5,216 @@ layout: null
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nithin Prasad | Systems Developer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Space+Mono&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <title>Nithin Prasad</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
     <style>
         :root { 
-            --bg: #030303; 
-            --card-bg: rgba(10, 10, 10, 0.8); 
-            --text: #ffffff; 
-            --accent: #facc15; /* Cyber Yellow */
-            --secondary: #64748b;
-            --border: rgba(250, 204, 21, 0.2);
+            --bg: #080808; 
+            --card-bg: rgba(15, 15, 15, 0.9); 
+            --text: #e0e0e0; 
+            --accent: #22c55e; /* Ghost Emerald */
+            --accent-dim: rgba(34, 197, 94, 0.1);
+            --border: #1a1a1a;
+        }
+
+        @keyframes scanline {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
 
         body { 
             background-color: var(--bg);
             color: var(--text); 
-            font-family: 'Space Grotesk', sans-serif; 
+            font-family: 'Inter', sans-serif; 
             margin: 0; 
             padding: 0;
-            line-height: 1.5;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        #particles-js {
+        /* Scanline Overlay Effect */
+        body::before {
+            content: "";
             position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            top: 0;
-            left: 0;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            background-size: 100% 2px, 3px 100%;
+            z-index: 999;
+            pointer-events: none;
+            opacity: 0.3;
         }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 100px 24px; position: relative; z-index: 1; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
         
-        header { margin-bottom: 100px; }
-        .prefix { font-family: 'Space Mono', monospace; color: var(--accent); font-size: 0.9rem; letter-spacing: 2px; }
-        h1 { font-size: clamp(3rem, 10vw, 5rem); margin: 10px 0; font-weight: 700; letter-spacing: -3px; }
-        .tagline { font-size: 1.25rem; color: var(--secondary); max-width: 600px; border-left: 3px solid var(--accent); padding-left: 20px; }
+        header { margin-bottom: 60px; border-left: 2px solid var(--accent); padding-left: 20px; }
+        .cmd { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-size: 0.9rem; margin-bottom: 5px; }
+        .cmd::after { content: "_"; animation: pulse 1s infinite; }
+        
+        h1 { font-size: clamp(2.5rem, 8vw, 4rem); margin: 10px 0; font-weight: 800; letter-spacing: -2px; color: #fff; }
+        .tagline { font-size: 1rem; color: #888; max-width: 600px; font-weight: 300; }
 
-        .label { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 4px; display: block; margin: 80px 0 30px 0; }
+        .section-label { 
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: 0.7rem; 
+            color: var(--accent); 
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            margin: 60px 0 20px 0;
+            display: block; 
+            opacity: 0.7;
+        }
 
-        /* Animated Glass Cards */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+        /* Smartphone Friendly Grid */
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 15px; 
+        }
+
         .card { 
             background: var(--card-bg); 
-            padding: 40px; 
+            padding: 30px; 
             border: 1px solid var(--border); 
-            backdrop-filter: blur(12px);
-            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            transition: all 0.3s ease;
             position: relative;
         }
 
         .card:hover { 
             border-color: var(--accent); 
-            background: rgba(250, 204, 21, 0.03);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            background: var(--accent-dim);
+            transform: scale(1.02);
         }
 
-        .card h3 { margin: 0 0 15px 0; font-size: 1.5rem; letter-spacing: -1px; }
-        .card p { color: var(--secondary); font-size: 1rem; margin-bottom: 25px; }
+        .card h3 { margin: 0 0 10px 0; font-size: 1.3rem; font-weight: 700; color: #fff; }
+        .card p { color: #aaa; font-size: 0.9rem; margin-bottom: 20px; }
         
-        .tags { display: flex; flex-wrap: wrap; gap: 8px; font-family: 'Space Mono', monospace; font-size: 0.7rem; }
-        .tags span { border: 1px solid var(--border); padding: 4px 10px; color: var(--accent); }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; }
+        .tags span { background: #000; padding: 4px 8px; border: 1px solid var(--border); color: var(--accent); }
 
         /* Timeline Items */
-        .item { margin-bottom: 40px; padding: 25px; border: 1px solid transparent; transition: 0.3s; }
-        .item:hover { border-color: var(--border); background: var(--card-bg); }
-        .item h4 { margin: 0; font-size: 1.2rem; }
-        .item-date { font-family: 'Space Mono', monospace; font-size: 0.8rem; color: var(--accent); margin-bottom: 8px; }
-        .item-sub { color: var(--secondary); font-size: 0.95rem; }
-
-        /* Buttons & Footer */
-        .btn { 
-            display: inline-block; 
-            margin-top: 60px; 
-            padding: 20px 45px; 
-            background: var(--accent); 
-            color: #000; 
-            text-decoration: none; 
-            font-family: 'Space Mono', monospace;
-            font-weight: 700;
+        .item { 
+            padding: 20px; 
+            border-bottom: 1px solid var(--border); 
             transition: 0.3s;
         }
-        .btn:hover { background: #fff; transform: skewX(-5deg); box-shadow: 8px 8px 0 var(--accent); }
+        .item:hover { background: rgba(255,255,255,0.02); }
+        .item h4 { margin: 0; font-size: 1.1rem; color: #fff; }
+        .item-date { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--accent); margin-bottom: 5px; }
+        .item-sub { color: #777; font-size: 0.85rem; }
 
-        footer { margin-top: 150px; padding: 50px 0; border-top: 1px solid var(--border); text-align: center; color: #444; font-family: 'Space Mono', monospace; font-size: 0.75rem; }
+        /* Mobile Optimized Buttons */
+        .btn { 
+            display: block;
+            text-align: center;
+            margin-top: 40px; 
+            padding: 18px; 
+            background: transparent; 
+            border: 1px solid var(--accent);
+            color: var(--accent); 
+            text-decoration: none; 
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .btn:hover { 
+            background: var(--accent); 
+            color: #000;
+            box-shadow: 0 0 20px var(--accent);
+        }
+
+        @media (min-width: 600px) {
+            .btn { display: inline-block; width: auto; padding: 18px 40px; }
+        }
+
+        footer { 
+            margin-top: 100px; 
+            padding: 40px 0; 
+            border-top: 1px solid var(--border); 
+            text-align: center; 
+            color: #444; 
+            font-family: 'JetBrains Mono', monospace; 
+            font-size: 0.7rem; 
+        }
     </style>
 </head>
 <body>
-    <div id="particles-js"></div>
 
     <div class="container">
         <header>
-            <span class="prefix">_SYSTEM.INITIALIZE()</span>
+            <span class="cmd">sudo systemctl start nithin.service</span>
             <h1>Nithin Prasad</h1>
-            <p class="tagline">Software Developer. Proficient in Python and AI-driven automation. Focused on building data-centric projects and coordinating high-impact technical events.</p>
+            <p class="tagline">Master of Computer Applications student. Ambitious Software Developer proficient in Python and AI-driven automation focused on scalable project success.</p>
         </header>
 
-        <span class="label">Primary_Deployments</span>
+        <span class="section-label">Deployment_Logs // Projects</span>
         <div class="grid">
             <div class="card">
                 <h3>Insight Gen</h3>
-                <p>An Agentic AI Analytics platform enabling autonomous data analysis and professional report generation from English queries.</p>
-                <div class="tags"><span>Python</span> <span>CrewAI</span> <span>Streamlit</span></div>
+                <p>An Agentic AI Analytics platform engineered for autonomous data analysis and professional report generation from natural language queries.</p>
+                <div class="tags"><span>Python</span> <span>CrewAI</span> <span>Streamlit</span> <span>Pandas</span></div>
             </div>
             <div class="card">
                 <h3>Revo</h3>
-                <p>Social news Android application featuring content rating and insightful community discussions.</p>
-                <div class="tags"><span>Java</span> <span>Android</span> <span>Firebase</span></div>
+                <p>Android application featuring content rating systems and insightful discussions designed for social news delivery.</p>
+                <div class="tags"><span>Java</span> <span>Android</span> <span>XML</span></div>
             </div>
             <div class="card">
                 <h3>PROFEXIA</h3>
-                <p>A web-based skill-barter platform designed for community-driven skill exchange without financial dependency.</p>
+                <p>Web-based skill-barter platform developed for community-driven skill exchange without financial dependency.</p>
                 <div class="tags"><span>Django</span> <span>Python</span> <span>SQL</span></div>
             </div>
             <div class="card">
-                <h3>Child_Vaccination_System</h3>
-                <p>Digital management system developed to streamline tracking and notification processes for pediatric schedules.</p>
+                <h3>Vax_Manager</h3>
+                <p>Digital management system developed to streamline tracking and notification for pediatric vaccination schedules.</p>
                 <div class="tags"><span>JavaScript</span> <span>HTML5</span> <span>SQL</span></div>
             </div>
         </div>
 
-        <span class="label">Technical_Certifications</span>
-        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
-            <div class="item" style="padding: 15px;">Elite Silver // Cloud Computing</div>
-            <div class="item" style="padding: 15px;">Generative AI // IBM</div>
-            <div class="item" style="padding: 15px;">React Apps // IBM</div>
-            <div class="item" style="padding: 15px;">Full Stack Python // ICT Academy</div>
-            <div class="item" style="padding: 15px;">AI for Everyone // DeepLearning.AI</div>
-        </div>
-
-        <span class="label">Events_&_Coordination</span>
+        <span class="section-label">System_Stats // Education</span>
         <div class="item">
-            <div class="item-date">MAR 2026 // Hackathon</div>
-            <h4>Main Coordinator | Hackastra 2026</h4>
-            <p class="item-sub">Managed end-to-end execution of a 21-hour hackathon themed "Design for Human Weakness".</p>
-        </div>
-        <div class="item">
-            <div class="item-date">OCT 2025 // Dept</div>
-            <h4>Main Coordinator | Pragyan Tech Fest</h4>
-            <p class="item-sub">Led strategic planning, sponsorship acquisition, and execution for the departmental tech fest.</p>
-        </div>
-        <div class="item">
-            <div class="item-date">APR 2025 // Computer Society of India</div>
-            <h4>MCA Representative | CSI SB ASIET</h4>
-            <p class="item-sub">Organizing technical symposiums and department-level software workshops.</p>
-        </div>
-
-        <span class="label">Education_History</span>
-        <div class="item">
-            <div class="item-date">2024 - PRESENT // 7.9 GPA</div>
+            <div class="item-date">2024 - Present // GPA: 7.9</div>
             <h4>Master of Computer Applications</h4>
             <p class="item-sub">Adi Shankara Institute of Engineering and Technology, Kalady.</p>
         </div>
         <div class="item">
-            <div class="item-date">2021 - 2024 // 6.7 GPA</div>
+            <div class="item-date">2021 - 2024 // GPA: 6.7</div>
             <h4>Bachelor of Computer Applications</h4>
-            <p class="item-sub">DePaul Institute of Science and Technology, Angamaly.</p>
+            <p class="item-sub">DePaul Institute of Science and Technology, Aluva.</p>
         </div>
 
-        <a href="./assets/docs/resume_tcs.pdf" class="btn">_ACCESS_RESUME</a>
+        <span class="section-label">Event_Buffer // Leadership</span>
+        <div class="item">
+            <div class="item-date">MAR 2026 // Hackathon</div>
+            <h4>Main Coordinator | Hackastra 2026</h4>
+            <p class="item-sub">Organized a 19-hour national-level hackathon themed "Design for Human Weakness", managing end-to-end execution.</p>
+        </div>
+        <div class="item">
+            <div class="item-date">OCT 2025 // Dept Level</div>
+            <h4>Main Coordinator | Pragyan Tech Fest</h4>
+            <p class="item-sub">Led strategic planning, sponsorship acquisition, and execution for the departmental festival.</p>
+        </div>
+        <div class="item">
+            <div class="item-date">APR 2025 // Computer Society of India</div>
+            <h4>MCA Representative | CSI SB ASIET</h4>
+            <p class="item-sub">Organizing technical symposiums and department workshops.</p>
+        </div>
+
+        <span class="section-label">Access_Protocol</span>
+        <a href="./assets/docs/resume_tcs.pdf" class="btn">_EXEC_DOWNLOAD_RESUME</a>
 
         <footer>
-            NITHIN_PRASAD_CORE_v4  // 2026
+            NITHIN_PRASAD_v4.0 // BUILT_WITH_GITHUB_PAGES
         </footer>
     </div>
 
-    <script>
-        particlesJS("particles-js", {
-            "particles": {
-                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-                "color": { "value": "#facc15" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.2, "random": false },
-                "size": { "value": 2, "random": true },
-                "line_linked": { "enable": true, "distance": 150, "color": "#facc15", "opacity": 0.1, "width": 1 },
-                "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
-            },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
-                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } } }
-            },
-            "retina_detect": true
-        });
-    </script>
 </body>
 </html>
