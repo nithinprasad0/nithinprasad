@@ -5,247 +5,192 @@ layout: null
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nithin Prasad | Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <title>Nithin Prasad | Systems Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Space+Mono&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <style>
         :root { 
-            --bg: #050505; 
-            --card-bg: rgba(255, 255, 255, 0.03); 
-            --text-primary: #ffffff; 
-            --text-secondary: #94a3b8; 
-            --accent: #00f2ff; /* Cyber Cyan */
-            --accent-glow: rgba(0, 242, 255, 0.3);
-            --border: rgba(255, 255, 255, 0.1);
-        }
-
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.98) translateY(20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
-        @keyframes backgroundPulse {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            --bg: #030303; 
+            --card-bg: rgba(10, 10, 10, 0.8); 
+            --text: #ffffff; 
+            --accent: #facc15; /* Cyber Yellow */
+            --secondary: #64748b;
+            --border: rgba(250, 204, 21, 0.2);
         }
 
         body { 
-            background: radial-gradient(circle at top right, #0a192f, #050505);
-            color: var(--text-primary); 
-            font-family: 'Inter', sans-serif; 
+            background-color: var(--bg);
+            color: var(--text); 
+            font-family: 'Space Grotesk', sans-serif; 
             margin: 0; 
             padding: 0;
-            line-height: 1.6;
+            line-height: 1.5;
             overflow-x: hidden;
         }
 
-        .container { max-width: 1000px; margin: 0 auto; padding: 60px 24px; animation: fadeInScale 1s cubic-bezier(0.2, 0.8, 0.2, 1); }
-        
-        header { margin-bottom: 80px; position: relative; }
-        .scanline {
+        #particles-js {
+            position: fixed;
             width: 100%;
-            height: 2px;
-            background: var(--accent);
-            position: absolute;
-            top: -20px;
-            box-shadow: 0 0 20px var(--accent);
-            opacity: 0.5;
+            height: 100%;
+            z-index: -1;
+            top: 0;
+            left: 0;
         }
 
-        .terminal-text { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-size: 0.85rem; margin-bottom: 10px; display: block; text-shadow: 0 0 10px var(--accent-glow); }
-        h1 { font-size: 4rem; margin: 0; font-weight: 800; letter-spacing: -3px; }
-        .header-bio { max-width: 700px; color: var(--text-secondary); font-size: 1.2rem; margin-top: 20px; border-left: 2px solid var(--accent); padding-left: 20px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 100px 24px; position: relative; z-index: 1; }
+        
+        header { margin-bottom: 100px; }
+        .prefix { font-family: 'Space Mono', monospace; color: var(--accent); font-size: 0.9rem; letter-spacing: 2px; }
+        h1 { font-size: clamp(3rem, 10vw, 5rem); margin: 10px 0; font-weight: 700; letter-spacing: -3px; }
+        .tagline { font-size: 1.25rem; color: var(--secondary); max-width: 600px; border-left: 3px solid var(--accent); padding-left: 20px; }
 
-        .section-tag { 
-            font-family: 'JetBrains Mono', monospace; 
-            font-size: 0.75rem; 
-            color: var(--accent); 
-            text-transform: uppercase; 
-            letter-spacing: 5px; 
-            margin: 100px 0 40px 0;
-            display: flex;
-            align-items: center;
-            opacity: 0.6;
-        }
-        .section-tag::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to right, var(--accent), transparent); margin-left: 20px; }
+        .label { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 4px; display: block; margin: 80px 0 30px 0; }
 
-        /* Animated Project Cards */
-        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
-        .p-card { 
+        /* Animated Glass Cards */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px; }
+        .card { 
             background: var(--card-bg); 
             padding: 40px; 
             border: 1px solid var(--border); 
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
             position: relative;
-            overflow: hidden;
         }
 
-        .p-card::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(0, 242, 255, 0.05), transparent);
-            transform: translateX(-100%);
-            transition: 0.5s;
-        }
-
-        .p-card:hover { 
+        .card:hover { 
             border-color: var(--accent); 
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 242, 255, 0.1);
+            background: rgba(250, 204, 21, 0.03);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
 
-        .p-card:hover::before { transform: translateX(100%); }
+        .card h3 { margin: 0 0 15px 0; font-size: 1.5rem; letter-spacing: -1px; }
+        .card p { color: var(--secondary); font-size: 1rem; margin-bottom: 25px; }
+        
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; font-family: 'Space Mono', monospace; font-size: 0.7rem; }
+        .tags span { border: 1px solid var(--border); padding: 4px 10px; color: var(--accent); }
 
-        .p-card h3 { margin: 0 0 15px 0; font-size: 1.5rem; color: #fff; letter-spacing: -0.5px; }
-        .p-card p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 25px; line-height: 1.7; }
-        .stack { display: flex; flex-wrap: wrap; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--accent); }
-        .stack span { background: rgba(0, 242, 255, 0.1); padding: 4px 10px; border-radius: 4px; }
+        /* Timeline Items */
+        .item { margin-bottom: 40px; padding: 25px; border: 1px solid transparent; transition: 0.3s; }
+        .item:hover { border-color: var(--border); background: var(--card-bg); }
+        .item h4 { margin: 0; font-size: 1.2rem; }
+        .item-date { font-family: 'Space Mono', monospace; font-size: 0.8rem; color: var(--accent); margin-bottom: 8px; }
+        .item-sub { color: var(--secondary); font-size: 0.95rem; }
 
-        /* Timeline Items with Motion */
-        .entry { 
-            margin-bottom: 40px; 
-            padding: 30px; 
-            border-radius: 8px;
-            border-left: 2px solid var(--border);
-            transition: 0.4s;
-            background: transparent;
-        }
-        .entry:hover { 
-            border-left-color: var(--accent); 
-            background: rgba(0, 242, 255, 0.02);
-            padding-left: 40px;
-        }
-        .entry h4 { margin: 0; font-size: 1.2rem; font-weight: 600; }
-        .entry-date { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--accent); margin-bottom: 8px; font-weight: 500; }
-        .entry-sub { color: var(--text-secondary); font-size: 1rem; margin-top: 5px; }
-
-        /* Certifications Mosaic */
-        .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px; list-style: none; padding: 0; }
-        .cert-item { 
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 15px;
-            font-size: 0.85rem;
-            border-radius: 6px;
-            transition: 0.3s;
-            text-align: center;
-        }
-        .cert-item:hover { border-color: var(--accent); color: var(--accent); transform: scale(1.05); }
-
-        /* Dynamic Action Button */
-        .btn-action { 
+        /* Buttons & Footer */
+        .btn { 
             display: inline-block; 
             margin-top: 60px; 
             padding: 20px 45px; 
-            background: transparent;
-            border: 1px solid var(--accent); 
-            color: var(--accent); 
+            background: var(--accent); 
+            color: #000; 
             text-decoration: none; 
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            position: relative;
-            z-index: 1;
-            transition: 0.5s;
-            overflow: hidden;
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            transition: 0.3s;
         }
+        .btn:hover { background: #fff; transform: skewX(-5deg); box-shadow: 8px 8px 0 var(--accent); }
 
-        .btn-action::after {
-            content: "";
-            position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 0;
-            background: var(--accent);
-            z-index: -1;
-            transition: 0.5s;
-        }
-
-        .btn-action:hover { color: var(--bg); }
-        .btn-action:hover::after { height: 100%; }
-
-        footer { margin-top: 150px; padding: 60px 0; border-top: 1px solid var(--border); text-align: center; color: #333; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; letter-spacing: 2px; }
+        footer { margin-top: 150px; padding: 50px 0; border-top: 1px solid var(--border); text-align: center; color: #444; font-family: 'Space Mono', monospace; font-size: 0.75rem; }
     </style>
 </head>
 <body>
+    <div id="particles-js"></div>
+
     <div class="container">
         <header>
-            <div class="scanline"></div>
-            <span class="terminal-text">PORTFOLIO_SYSTEM_ACTIVE // V4.0</span>
+            <span class="prefix">_SYSTEM.INITIALIZE()</span>
             <h1>Nithin Prasad</h1>
-            <p class="header-bio">Software Developer specializing in Python and AI-driven automation. Building autonomous analytics systems and coordinating high-impact national technical events.</p>
+            <p class="tagline">Software Developer. Proficient in Python and AI-driven automation. Focused on building data-centric projects and coordinating high-impact technical events.</p>
         </header>
 
-        <span class="section-tag">Current_Builds</span>
-        <div class="project-grid">
-            <div class="p-card">
+        <span class="label">Primary_Deployments</span>
+        <div class="grid">
+            <div class="card">
                 <h3>Insight Gen</h3>
-                <p>An Agentic AI Analytics platform functioning as an autonomous system for data analysis and professional report generation.</p>
-                <div class="stack"><span>Python</span> <span>CrewAI</span> <span>Streamlit</span> <span>Pandas</span></div>
+                <p>An Agentic AI Analytics platform enabling autonomous data analysis and professional report generation from English queries.</p>
+                <div class="tags"><span>Python</span> <span>CrewAI</span> <span>Streamlit</span></div>
             </div>
-            <div class="p-card">
+            <div class="card">
                 <h3>Revo</h3>
-                <p>Social news Android application featuring content rating systems and insightful real-time community discussions.</p>
-                <div class="stack"><span>Java</span> <span>Android</span> <span>Firebase</span></div>
+                <p>Social news Android application featuring content rating and insightful community discussions.</p>
+                <div class="tags"><span>Java</span> <span>Android</span> <span>Firebase</span></div>
             </div>
-            <div class="p-card">
+            <div class="card">
                 <h3>PROFEXIA</h3>
-                <p>Web-based skill-barter platform designed for community-driven skill exchange without financial dependency.</p>
-                <div class="stack"><span>Django</span> <span>Python</span> <span>SQL</span></div>
+                <p>A web-based skill-barter platform designed for community-driven skill exchange without financial dependency.</p>
+                <div class="tags"><span>Django</span> <span>Python</span> <span>SQL</span></div>
             </div>
-            <div class="p-card">
-                <h3>Child Vaccination</h3>
-                <p>Digital management system developed to streamline tracking and notification for pediatric vaccination schedules.</p>
-                <div class="stack"><span>JavaScript</span> <span>SQL</span> <span>HTML5</span></div>
+            <div class="card">
+                <h3>Child_Vaccination_System</h3>
+                <p>Digital management system developed to streamline tracking and notification processes for pediatric schedules.</p>
+                <div class="tags"><span>JavaScript</span> <span>HTML5</span> <span>SQL</span></div>
             </div>
         </div>
 
-        <span class="section-tag">Certifications_Validated</span>
-        <div class="cert-grid">
-            <div class="cert-item">Cloud Computing // <b>NPTEL</b></div>
-            <div class="cert-item">Generative AI // <b>IBM</b></div>
-            <div class="cert-item">Front-End React // <b>IBM</b></div>
-            <div class="cert-item">Full Stack Python // <b>ICT</b></div>
-            <div class="cert-item">AI Foundations // <b>DeepLearning</b></div>
-            <div class="cert-item">Git & GitHub // <b>IBM</b></div>
+        <span class="label">Technical_Certifications</span>
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+            <div class="item" style="padding: 15px;">Elite Silver // Cloud Computing</div>
+            <div class="item" style="padding: 15px;">Generative AI // IBM</div>
+            <div class="item" style="padding: 15px;">React Apps // IBM</div>
+            <div class="item" style="padding: 15px;">Full Stack Python // ICT Academy</div>
+            <div class="item" style="padding: 15px;">AI for Everyone // DeepLearning.AI</div>
         </div>
 
-        <span class="section-tag">Leadership_Timeline</span>
-        <div class="entry">
-            <div class="entry-date">2026-03-24 // HACKATHON</div>
+        <span class="label">Events_&_Coordination</span>
+        <div class="item">
+            <div class="item-date">MAR 2026 // Hackathon</div>
             <h4>Main Coordinator | Hackastra 2026</h4>
-            <div class="entry-sub">Managing end-to-end execution of a 19-hour national hackathon themed "Design for Human Weakness".</div>
+            <p class="item-sub">Managed end-to-end execution of a 21-hour hackathon themed "Design for Human Weakness".</p>
         </div>
-        <div class="entry">
-            <div class="entry-date">2025-10-16 // DEPARTMENT LEVEL</div>
+        <div class="item">
+            <div class="item-date">OCT 2025 // Dept</div>
             <h4>Main Coordinator | Pragyan Tech Fest</h4>
-            <div class="entry-sub">Strategic planning, sponsorship acquisition, and execution for the departmental tech festival.</div>
+            <p class="item-sub">Led strategic planning, sponsorship acquisition, and execution for the departmental tech fest.</p>
         </div>
-        <div class="entry">
-            <div class="entry-date">2025-04-01 // COMPUTER SOCIETY OF INDIA</div>
+        <div class="item">
+            <div class="item-date">APR 2025 // Computer Society of India</div>
             <h4>MCA Representative | CSI SB ASIET</h4>
-            <div class="entry-sub">Organizing technical symposiums and coordinating department-level software workshops.</div>
+            <p class="item-sub">Organizing technical symposiums and department-level software workshops.</p>
         </div>
 
-        <span class="section-tag">Educational_Credentials</span>
-        <div class="entry">
-            <div class="entry-date">2024 - PRESENT // GPA: 7.9</div>
+        <span class="label">Education_History</span>
+        <div class="item">
+            <div class="item-date">2024 - PRESENT // 7.9 GPA</div>
             <h4>Master of Computer Applications</h4>
-            <div class="entry-sub">Adi Shankara Institute of Engineering and Technology, Kalady.</div>
+            <p class="item-sub">Adi Shankara Institute of Engineering and Technology, Kalady.</p>
         </div>
-        <div class="entry">
-            <div class="entry-date">2021 - 2024 // GPA: 6.7</div>
+        <div class="item">
+            <div class="item-date">2021 - 2024 // 6.7 GPA</div>
             <h4>Bachelor of Computer Applications</h4>
-            <div class="entry-sub">DePaul Institute of Science and Technology, Angamaly.</div>
+            <p class="item-sub">DePaul Institute of Science and Technology, Angamaly.</p>
         </div>
 
-        <a href="./assets/docs/resume_tcs.pdf" class="btn-action">Download_Core_Resume</a>
+        <a href="./assets/docs/resume_tcs.pdf" class="btn">_ACCESS_RESUME</a>
 
         <footer>
-            NITHIN_PRASAD_DEV // 2026 // SYST_READY
+            NITHIN_PRASAD_CORE_v4  // 2026
         </footer>
     </div>
+
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#facc15" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.2, "random": false },
+                "size": { "value": 2, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#facc15", "opacity": 0.1, "width": 1 },
+                "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true },
+                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } } }
+            },
+            "retina_detect": true
+        });
+    </script>
 </body>
 </html>
