@@ -1,6 +1,5 @@
-theme: minima
-title: Nithin Prasad | Portfolio
-description: Developer
+theme: jekyll-theme-hacker
+title: Nithin Prasad
 show_excerpts: true
 baseurl: ""
 url: "https://nithinprasad0.github.io"
