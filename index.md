@@ -402,7 +402,7 @@ footer .f-left { font-size: 0.55rem; letter-spacing: 3px; color: var(--muted); }
       <a href="#projects">Projects</a>
       <a href="#leadership">Leadership</a>
       <a href="#education">Education</a>
-      <a href="./assets/docs/resume_tcs.pdf">Résumé</a>
+      <a href="./assets/docs/nithin-resume.pdf">Résumé</a>
     </div>
   </div>
 </nav>
