@@ -554,7 +554,7 @@ footer .f-left { font-size: 0.55rem; letter-spacing: 3px; color: var(--muted); }
 
   <!-- CTA -->
   <div class="cta-wrap sr">
-    <a href="./assets/docs/resume_tcs.pdf" class="btn"><span>Download Résumé</span></a>
+    <a href="./assets/docs/resume.pdf" class="btn"><span>Download Résumé</span></a>
   </div>
 
   <!-- FOOTER -->
