@@ -5,7 +5,7 @@ layout: null
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nithin Prasad</title>
+<title>Nithin Prasad - Assistant Systems Engineer</title>
 <link href="https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,300&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -141,10 +141,42 @@ header {
 .coord-tag {
   font-size: 0.58rem; letter-spacing: 5px; color: var(--muted);
   text-transform: uppercase; display: flex; align-items: center; gap: 12px;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   opacity: 0; animation: fadeup 0.8s forwards 0.3s;
 }
 .coord-tag::before { content: '—'; color: var(--ice); }
+
+/* ── TCS BANNER ── */
+.tcs-banner {
+  display: inline-flex; align-items: center; gap: 14px;
+  background: var(--glass);
+  border: 1px solid var(--border2);
+  padding: 6px 20px 6px 6px;
+  border-radius: 50px;
+  margin-bottom: 30px;
+  opacity: 0; animation: fadeup 0.8s forwards 0.4s;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  width: fit-content;
+}
+.tcs-banner:hover {
+  transform: translateY(-2px);
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+}
+.tcs-badge {
+  background: var(--ice);
+  color: var(--bg);
+  font-weight: 700;
+  font-size: 0.55rem; letter-spacing: 2px; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 30px;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.4);
+}
+.tcs-banner span {
+  font-size: 0.72rem; color: var(--text); letter-spacing: 0.5px;
+}
+.tcs-banner strong { color: var(--white); font-weight: 600; letter-spacing: 1px; }
 
 h1 {
   font-size: clamp(3.8rem, 10vw, 8.5rem);
@@ -378,6 +410,7 @@ footer .f-left { font-size: 0.55rem; letter-spacing: 3px; color: var(--muted); }
   .tl-body { padding: 12px 0 24px; }
   footer { flex-direction: column; gap: 12px; }
   .hero-chips { gap: 8px; }
+  .tcs-banner { flex-direction: column; align-items: flex-start; gap: 8px; border-radius: 20px; padding: 14px 20px; }
 }
 </style>
 </head>
@@ -402,7 +435,7 @@ footer .f-left { font-size: 0.55rem; letter-spacing: 3px; color: var(--muted); }
       <a href="#projects">Projects</a>
       <a href="#leadership">Leadership</a>
       <a href="#education">Education</a>
-      <a href="./assets/docs/resume.pdf">Résumé</a>
+      <a href="./assets/docs/resume_tcs.pdf">Résumé</a>
     </div>
   </div>
 </nav>
@@ -412,6 +445,12 @@ footer .f-left { font-size: 0.55rem; letter-spacing: 3px; color: var(--muted); }
   <!-- HERO -->
   <header>
     <div class="coord-tag">10.53° N &nbsp;76.21° E &nbsp;&nbsp;·&nbsp;&nbsp; Kerala, India &nbsp;&nbsp;·&nbsp;&nbsp; MCA Candidate</div>
+
+    <!-- TCS BANNER -->
+    <div class="tcs-banner">
+      <div class="tcs-badge">Placed</div>
+      <span>Incoming <strong>Assistant Systems Engineer</strong> at TCS</span>
+    </div>
 
     <h1>NITHIN<span class="last">PRASAD</span></h1>
 
@@ -554,7 +593,7 @@ footer .f-left { font-size: 0.55rem; letter-spacing: 3px; color: var(--muted); }
 
   <!-- CTA -->
   <div class="cta-wrap sr">
-    <a href="./assets/docs/resume.pdf" class="btn"><span>Download Résumé</span></a>
+    <a href="./assets/docs/resume_tcs.pdf" class="btn"><span>Download Résumé</span></a>
   </div>
 
   <!-- FOOTER -->
@@ -579,7 +618,7 @@ document.addEventListener('mousemove', e => {
   ring.style.transform = `translate(${rx-14}px,${ry-14}px)`;
   requestAnimationFrame(lp);
 })();
-document.querySelectorAll('a,.glass-card,.tl-row,.chip,.btn').forEach(el=>{
+document.querySelectorAll('a,.glass-card,.tl-row,.chip,.btn,.tcs-banner').forEach(el=>{
   el.addEventListener('mouseenter',()=>ring.classList.add('expand'));
   el.addEventListener('mouseleave',()=>ring.classList.remove('expand'));
 });
